@@ -1,8 +1,9 @@
 package com.company;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.TreeSet;
 
 public class Main {
 
@@ -228,5 +229,80 @@ public class Main {
 
         System.out.println(basket.getBlueBalls());
         System.out.println(basket.getBallWeight());
+
+        System.out.println(" ");
+
+        Book book1 = new Book("Masters of Doom", "Kushner, David", 35, 2);
+        Book book2 = new Book("Three Essays on the Theory of Sexuality", "Freyd, Sigismund", 18, 3);
+        System.out.println(book1.equals(book2));
+        System.out.println(book1.hashCode());
+        System.out.println(book2.toString());
+
+        System.out.println(" ");
+
+        Comparator<Book> bookComparator = new BookTitleComparator();
+
+        TreeSet<Book> library1 = new TreeSet<>(bookComparator);
+        library1.add(new Book("To Kill a Mockingbird", "Lee, Harper", 29, 1));
+        library1.add(new Book("A Sign of Four", "Conan Doyle, Arthur", 10, 1));
+        library1.add(new Book("Rich Dad Poor Dad", "Kiyossaki, Robert", 322, 1488));
+        library1.add(new Book("Sensei Ni Wa Kanawanai", "Toribun", 4, 10));
+        library1.add(book1);
+        library1.add(book2);
+
+        for (Book lib: library1) {
+            System.out.println(lib);
+        }
+
+        System.out.println(" ");
+
+        bookComparator = new BookTitleComparator().thenComparing(new BookAuthorComparator());
+
+        TreeSet<Book> library2 = new TreeSet<>(bookComparator);
+        library2.add(new Book("To Kill a Mockingbird", "Lee, Harper", 29, 1));
+        library2.add(new Book("A Sign of Four", "Conan Doyle, Arthur", 10, 1));
+        library2.add(new Book("Rich Dad Poor Dad", "Kiyossaki, Robert", 322, 1488));
+        library2.add(new Book("Sensei Ni Wa Kanawanai", "Toribun", 4, 10));
+        library2.add(book1);
+        library2.add(book2);
+
+        for (Book lib: library2) {
+            System.out.println(lib);
+        }
+
+        System.out.println(" ");
+
+        bookComparator = new BookAuthorComparator().thenComparing(new BookTitleComparator());
+
+        TreeSet<Book> library3 = new TreeSet<>(bookComparator);
+        library3.add(new Book("To Kill a Mockingbird", "Lee, Harper", 29, 1));
+        library3.add(new Book("A Sign of Four", "Conan Doyle, Arthur", 10, 1));
+        library3.add(new Book("Rich Dad Poor Dad", "Kiyossaki, Robert", 322, 1488));
+        library3.add(new Book("Sensei Ni Wa Kanawanai", "Toribun", 4, 10));
+        library3.add(book1);
+        library3.add(book2);
+
+        for (Book lib: library3) {
+            System.out.println(lib);
+        }
+
+        System.out.println(" ");
+
+        bookComparator = new BookAuthorComparator().thenComparing(new BookTitleComparator()).thenComparing(new BookPriceComparator());
+
+        TreeSet<Book> library4 = new TreeSet<>(bookComparator);
+        library4.add(new Book("To Kill a Mockingbird", "Lee, Harper", 29, 1));
+        library4.add(new Book("A Sign of Four", "Conan Doyle, Arthur", 10, 1));
+        library4.add(new Book("Rich Dad Poor Dad", "Kiyossaki, Robert", 322, 1488));
+        library4.add(new Book("Sensei Ni Wa Kanawanai", "Toribun", 4, 10));
+        library4.add(book1);
+        library4.add(book2);
+
+        for (Book lib: library4) {
+            System.out.println(lib);
+        }
+
+        System.out.println(" ");
+
     }
 }

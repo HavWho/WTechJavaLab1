@@ -8,6 +8,25 @@ public class Book implements Comparable<Book>{
     private int edition;
     private int isbn;
 
+    public Book() {
+
+    }
+
+    public Book(String title, String author, int price, int edition) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.edition = edition;
+    }
+
+    public Book(String title, String author, int price, int edition, int isbn) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.edition = edition;
+        this.isbn = isbn;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -42,7 +61,7 @@ public class Book implements Comparable<Book>{
 
     @Override
     public int hashCode() {
-        return price * 10000;
+        return price * 12345;
     }
 
     @Override
@@ -57,7 +76,7 @@ public class Book implements Comparable<Book>{
 
     @Override
     public String toString() {
-        return title + ", " + author + ", " + price + ", " + edition;
+        return "{Book}/" + title + "; " + author + "; " + price + "; " + edition;
     }
 
     @Override
